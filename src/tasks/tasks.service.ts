@@ -1,11 +1,11 @@
 import { Injectable } from '@nestjs/common';
-import {Task, TaskStatus } from './tasks.entity'
+import { Task, TaskStatus } from './tasks.entity'
 import { v4 } from 'uuid'
 
 @Injectable()
 export class TasksService {
 
-    private tasks:Task[] = [{
+    private tasks: Task[] = [{
         id: '1',
         title: 'Task 1',
         description: 'Task 1 description',
@@ -13,7 +13,7 @@ export class TasksService {
     }]
 
     getAllTasks() {
-        return  this.tasks;
+        return this.tasks;
     }
     createTasks(title: string, description: string) {
         const task = {
@@ -25,8 +25,10 @@ export class TasksService {
         this.tasks.push(task)
 
         return task;
-     }
+    }
 
+    deleteTasks(id: string){
+        this.tasks = this.tasks.filter(task => task.id !== id)
+    }
     updateTasks() { }
-    deleteTasks() { }
 }
